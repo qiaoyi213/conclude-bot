@@ -20,9 +20,29 @@ async def test(ctx, arg1, arg2):
     await ctx.send(f'You passed {arg1} and {arg2}')
 
 @bot.command()
-async def conclude_all(ctx):
-    await ctx.send(GAI.conclude_all())
-    await ctx.send(GAI.conclude())
+async def clean(ctx):
+    # clean chat_log file
+    with open('../chat_log.txt', 'w') as f:
+        f.write('')
+    
+    await ctx.send(f'已清理紀錄，接下來將從下一則訊息開始總結')
+
+@bot.command()
+async def conclude(ctx):
+    # read chat_log file
+    await ctx.send('總結中...')
+    with open('../chat_log.txt', 'r') as f:
+        chat_log = f.read()
+    await ctx.send(GAI.conclude(chat_log))
+    await clean(ctx)
+
+@bot.event
+async def on_message(message):
+    # save message in chat_log file
+    if message.content[0] != '$':
+        with open('../chat_log.txt', 'a') as f:
+            f.write(f'{message.author.name}: {message.content}\n')
+    await bot.process_commands(message)
 
 bot.run(get_discord_token())
 
