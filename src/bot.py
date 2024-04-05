@@ -36,10 +36,15 @@ async def conclude(ctx):
     await ctx.send(GAI.conclude(chat_log))
     await clean(ctx)
 
+@bot.command()
+async def show_chat(ctx):
+    # upload file to discord
+    await ctx.send(file=discord.File(r'../chat_log.txt'))
+
 @bot.event
 async def on_message(message):
     # save message in chat_log file
-    if message.content[0] != '$':
+    if len(message.content) > 0 and message.content[0] != '$':
         with open('../chat_log.txt', 'a') as f:
             f.write(f'{message.author.name}: {message.content}\n')
     await bot.process_commands(message)
