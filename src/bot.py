@@ -13,14 +13,16 @@ async def on_ready():
 
 @bot.command(name="ping")
 async def ping(ctx):
-
     await ctx.send("pong")
 
 @bot.command()
 async def test(ctx, arg1, arg2):
     await ctx.send(f'You passed {arg1} and {arg2}')
 
-
+@bot.command()
+async def conclude_all(ctx):
+    await ctx.send(GAI.conclude_all())
+    await ctx.send(GAI.conclude())
 
 bot.run(get_discord_token())
 
