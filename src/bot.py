@@ -37,6 +37,16 @@ async def conclude(ctx):
     await clean(ctx)
 
 @bot.command()
+async def conclude_all(ctx):
+    pass
+
+@bot.command()
+async def help_conclude(ctx):
+    with open('assets/help.txt', 'r') as f:
+        help_text = f.read()
+    await ctx.send(help_text)
+
+@bot.command()
 async def show_chat(ctx):
     # upload file to discord
     await ctx.send(file=discord.File(r'../chat_log.txt'))

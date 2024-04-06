@@ -1,0 +1,13 @@
+我是一個可以幫你總結聊天的機器人
+使用 conclude 前請確保您的 OpenAI API 具有足夠的金額
+
+以下是可用的指令列表：
+```
+$help_conclude：取得協助
+$ping：回傳 "pong"
+$test str1 str2 : 回傳 "You passed str1 and str2"
+$show_chat：機器人將上傳目前所看過的聊天記錄
+$clean：清除機器人看過的聊天記錄
+$conclude：將機器人從上次總結或上次清除之後的內容總結
+$conclude_all：機器人將讀取盡可能多的內容並且總結
+```
